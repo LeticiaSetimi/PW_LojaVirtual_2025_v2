@@ -30,6 +30,12 @@ async def get_produtos():
     response = templates.TemplateResponse("produtos.html", {"request": {}, "produtos": produtos})
     return response
 
+@app.get("/produtos/{id}")
+async def get_produto_por_id(id: int):                                   # o id é passado como parâmetro na URL
+    produto = produto_repo.obter_por_id(id)
+    response = templates.TemplateResponse("produto.html", {"request": {}, "produto": produto})
+    return response
+
 
 @app.get("/clientes")
 async def get_clientes():
